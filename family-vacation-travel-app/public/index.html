@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Family Vacation Travel Planner</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>✈️ Family Vacation Travel Planner</h1>
+    <p class="subtitle">One trip. Seven ways to find the cheapest way to get there.</p>
+  </header>
+
+  <section class="trip-bar">
+    <div class="field">
+      <label for="origin">From</label>
+      <input id="origin" placeholder="e.g. JFK" maxlength="4" />
+    </div>
+    <div class="field">
+      <label for="destination">To</label>
+      <input id="destination" placeholder="e.g. MCO" maxlength="4" />
+    </div>
+    <div class="field">
+      <label for="startDate">Depart</label>
+      <input id="startDate" type="date" />
+    </div>
+    <div class="field">
+      <label for="endDate">Return / range end</label>
+      <input id="endDate" type="date" />
+    </div>
+    <p class="hint">Airport codes only for now (try JFK/LGA/EWR, MCO/SFB, LAX, ORD, LHR, CDG). This value is shared across every tab below.</p>
+  </section>
+
+  <nav class="tabs" id="tabs">
+    <button data-tab="cheapest" class="tab active">1. Cheapest Flights</button>
+    <button data-tab="carriers" class="tab">2. Hidden Carriers</button>
+    <button data-tab="layovers" class="tab">3. Layover Savings</button>
+    <button data-tab="deals" class="tab">4. Error Fares &amp; Deals</button>
+    <button data-tab="compare" class="tab">5. Compare Sites</button>
+    <button data-tab="alerts" class="tab">6. Price Alerts</button>
+    <button data-tab="combo" class="tab">7. Combo Optimizer</button>
+  </nav>
+
+  <main>
+    <!-- 1 -->
+    <section class="panel active" id="panel-cheapest">
+      <p class="panel-desc">Finds the cheapest flights for your route and date range, including nearby airports and one-way fares.</p>
+      <div class="controls">
+        <label><input type="checkbox" id="cheapest-nearby" checked /> Include nearby airports</label>
+        <label><input type="checkbox" id="cheapest-oneway" /> One-way only</label>
+        <button id="cheapest-run">Search</button>
+      </div>
+      <div id="cheapest-results" class="results"></div>
+    </section>
+
+    <!-- 2 -->
+    <section class="panel" id="panel-carriers">
+      <p class="panel-desc">Which low-cost carriers operate this route but don't appear on major travel sites?</p>
+      <div class="controls"><button id="carriers-run">Check carriers</button></div>
+      <div id="carriers-results" class="results"></div>
+    </section>
+
+    <!-- 3 -->
+    <section class="panel" id="panel-layovers">
+      <p class="panel-desc">5 cities where adding a self-transfer layover might reduce the overall cost (uses the Depart date).</p>
+      <div class="controls"><button id="layovers-run">Find layover savings</button></div>
+      <div id="layovers-results" class="results"></div>
+    </section>
+
+    <!-- 4 -->
+    <section class="panel" id="panel-deals">
+      <p class="panel-desc">Error fares or flash deals leaving from your origin airport this month.</p>
+      <div class="controls"><button id="deals-run">Scan for deals</button></div>
+      <div id="deals-results" class="results"></div>
+    </section>
+
+    <!-- 5 -->
+    <section class="panel" id="panel-compare">
+      <p class="panel-desc">Compares fares across Google Flights, Hopper, Skyscanner and the airline's own page for the Depart date.</p>
+      <div class="controls"><button id="compare-run">Compare sites</button></div>
+      <div id="compare-results" class="results"></div>
+    </section>
+
+    <!-- 6 -->
+    <section class="panel" id="panel-alerts">
+      <p class="panel-desc">Set a 3-day price watch on this route and get notified when the fare drops below your target.</p>
+      <div class="controls">
+        <label>Alert me below $ <input id="alert-threshold" type="number" value="215" min="1" style="width:80px" /></label>
+        <button id="alert-create">Create 3-day alert</button>
+      </div>
+      <div id="alerts-list" class="results"></div>
+    </section>
+
+    <!-- 7 -->
+    <section class="panel" id="panel-combo">
+      <p class="panel-desc">Optimal combo of round-trip vs. two one-way tickets (Depart = outbound date, Return / range end = return date).</p>
+      <div class="controls"><button id="combo-run">Optimize combo</button></div>
+      <div id="combo-results" class="results"></div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>Demo build: prices come from a deterministic mock fare engine, not live inventory. See README for how to wire in real providers (Amadeus, Kiwi Tequila, RapidAPI Skyscanner).</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

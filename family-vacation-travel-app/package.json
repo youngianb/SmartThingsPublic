@@ -1,0 +1,15 @@
+{
+  "name": "family-vacation-travel-app",
+  "version": "1.0.0",
+  "description": "Family vacation flight-deal finder covering cheapest fares, hidden low-cost carriers, layover savings, error-fare alerts, cross-site comparison, price watches, and round-trip-vs-one-way optimization.",
+  "private": true,
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "test": "node --test test/*.test.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
